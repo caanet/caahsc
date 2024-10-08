@@ -1,7 +1,7 @@
 {
   "name": "spoke",
   "description": "Mass peer to peer texting tool",
-  "repository": "https://github.com/StateVoicesNational/spoke",
+  "repository": "https://github.com/moveonorg/spoke",
   "success_url": "/",
   "stack": "container",
   "env": {
@@ -183,13 +183,20 @@
     }
   },
   "addons": [
-    "heroku-postgresql:basic",
     {
-      "plan": "heroku-redis:mini",
+      "plan": "heroku-postgresql:standard-0",
       "options": {
         "maxmemory-policy": "volatile-lru"
       }
     },
-    "mailgun:starter"
-  ]
+    "mailgun:starter",
+    "heroku-redis:mini",
+    "bucketeer:hobbyist"
+  ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "standard-1x"
+    }
+  }
 }
